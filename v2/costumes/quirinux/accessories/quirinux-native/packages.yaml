@@ -43,7 +43,6 @@ packages:
   - quirinux-opencl-support
   - quirinux-parches
   - quirinux-recomendados
-  - quirinux-repo
   - quirinux-temas
   - quirinux-update
   - quirinux-usuarios
