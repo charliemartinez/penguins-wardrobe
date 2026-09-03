@@ -50,3 +50,37 @@ if command -v systemctl >/dev/null 2>&1 && systemctl list-unit-files 2>/dev/null
     systemctl set-default graphical.target >/dev/null 2>&1
     systemctl enable lightdm.service >/dev/null 2>&1
 fi
+
+# ----------------------------------------------------------------------
+# Forzar sesión XFCE por defecto.
+# En instalaciones frescas, lightdm puede haber guardado
+# "lightdm-xsession" antes de que XFCE existiera; eso deja la
+# sesión rota para siempre ("unable to load a failsafe session").
+# ----------------------------------------------------------------------
+
+# 1) Sesión por defecto para usuarios sin sesión guardada
+grep -q "^user-session" /etc/lightdm/lightdm.conf || \
+    printf "\n[Seat:*]\nuser-session=xfce\n" >> /etc/lightdm/lightdm.conf
+
+# 2) Usuarios futuros (vía skel)
+printf "[Desktop]\nSession=xfce\n" > /etc/skel/.dmrc
+
+# 3) Usuarios existentes: corregir sesión guardada
+for h in /home/*; do
+    [ -d "$h" ] || continue
+    u=$(basename "$h")
+    id "$u" >/dev/null 2>&1 || continue
+    if [ -f "$h/.dmrc" ]; then
+        sed -i "s/^Session=.*/Session=xfce/" "$h/.dmrc"
+    else
+        printf "[Desktop]\nSession=xfce\n" > "$h/.dmrc"
+    fi
+    chown "$u:$u" "$h/.dmrc" 2>/dev/null || true
+done
+
+# 4) AccountsService (lightdm lo lee con prioridad)
+for f in /var/lib/AccountsService/users/*; do
+    [ -f "$f" ] || continue
+    sed -i "s/^XSession=.*/XSession=xfce/; s/^Session=.*/Session=xfce/" "$f"
+done
+
