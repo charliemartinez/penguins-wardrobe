@@ -20,7 +20,8 @@ sequence:
       - update-alternatives --install /usr/bin/pager pager /bin/cat 200 || true
       - rm -f /usr/share/keyrings/quirinux.gpg
       - curl -fsSL https://repo.quirinux.org/gpg/quirinux.asc | gpg --dearmor -o /usr/share/keyrings/quirinux.gpg
-      - echo "deb [arch=amd64 signed-by=/usr/share/keyrings/quirinux.gpg] https://repo.quirinux.org/ quirinux main" | tee /etc/apt/sources.list.d/quirinux.list > /dev/null
+      - echo "deb [arch=amd64 signed-by=/usr/share/keyrings/quirinux.gpg] https://repo.quirinux.org/ quirinux2 main" | tee /etc/apt/sources.list.d/quirinux.list > /dev/null
+      - curl -fsSL https://repo.quirinux.org/gpg/quirinux.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/quirinux.gpg    
     update: true
     upgrade: true
 
