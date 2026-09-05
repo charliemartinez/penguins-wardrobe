@@ -102,11 +102,14 @@ finalize:
   - "../../scripts/config_lightdm.sh"
   - "../../scripts/hostname.sh"
 
-  # 6. Limpieza segura
+   # 6. Proteger xinit y componentes críticos de XFCE antes del autoremove
+  - apt-mark manual xinit xfconf dbus-x11 xfce4-session 2>/dev/null || true
+  
+  # 7. Limpieza segura
   - apt-get autoremove -y || true
   - apt-get clean || true
 
-  # 7. Garantía de paquetes esenciales de Quirinux
+  # 8. Garantía de paquetes esenciales de Quirinux
   - apt-get install -y --reinstall mintinstall mint-common || true
   - apt-mark manual mintinstall mint-common || true
 
