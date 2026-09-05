@@ -1,53 +1,56 @@
-![](./penguins-wardrobe.png)
-# penguins-wardrobe / v2
+# Wardrobe v2
 
-This directory contains the **v2 wardrobe definitions**: costumes, accessories, scripts, and vendor configurations used by `penguins-wardrobe` to customize and dress Linux systems.
+This directory is the collection consumed by `tailor`. For installation and commands, read the shared [Wardrobe and Tailor user guide](DOCS/wardrobe-users-guide.md). For live media and installer artwork, read the [branding guide](DOCS/branding.md).
 
----
-
-## 📁 Directory Layout
-
-- **`costumes/`**: Declarative desktop and system environment recipes (e.g. `colibri`, `eagle`, `duck`, `seagull`, `quirinux`).
-- **`accessories/`**: Modular components that can be installed alongside costumes or standalone (e.g. `eggs-dev`, `base`, `live-installer`, `firmwares`).
-- **`packages.preseed`**: Debconf automatic preseeding files (per costume/accessory) for 100% unattended installations without interactive prompts.
-- **`vendors/`**: Vendor-specific customizations and configurations.
-- **`scripts/`**: Utility and helper scripts executed during the wardrobe customization sequence.
-- **`DOCS/`**: Documentation and guides (see [Wardrobe Users' Guide](./DOCS/wardrobe-users-guide.md)).
-
----
-
-## 🚀 Quick Usage
-You need to install the package [penguins-tailor](https://github.com/pieroproietti/penguins-tailor) and use it to interact with this or your custom wardrobe.
-
-```bash
-# Clone or update the wardrobe repository
-tailor get
-
-# List available costumes
-tailor list
-
-# Show detailed information about a costume
-tailor show colibri
-
-# Apply a costume to the current machine
-sudo tailor wear colibri
-
-# Export built packages or execution logs to remote server
-tailor export pkg
-tailor export log
+```text
+v2/
+├── costumes/<name>/       complete recipes
+├── accessories/<name>/    reusable recipes
+├── branding/<name>/       visual identity bundles
+├── scripts/               shared commands
+└── DOCS/                  Wardrobe and Tailor documentation
 ```
 
----
+## Recipes
 
-## ℹ️ More Information
+A costume or accessory typically contains:
 
-- **Main Repository**: [github.com/pieroproietti/penguins-wardrobe](https://github.com/pieroproietti/penguins-wardrobe)
-- **Website & Documentation**: [penguins-eggs.net](https://penguins-eggs.net)
-- **Author**: Piero Proietti <piero.proietti@gmail.com>
+```text
+index.yaml                recipe and metadata
+packages.yaml             optional additional packages
+packages.preseed          optional Debian Debconf answers
+sysroot/                  optional files copied onto /
+scripts/                  optional recipe scripts
+```
 
----
+Tailor prefers `index.yaml`, then `index.yml`. When neither exists, it searches distribution-specific filenames. It selects one recipe; it does not merge `index.yaml` with `debian.yaml` or `arch.yaml`. See the [recipe reference](DOCS/wardrobe-users-guide.md#scrivere-una-ricetta).
 
-## 📜 Copyright and License
+```bash
+tailor get
+tailor list
+tailor show colibri
+tailor show accessories/multimedia
+sudo tailor wear colibri
+sudo tailor wear accessories/multimedia
+```
 
-Copyright (c) 2026 Piero Proietti. Dual licensed under the MIT or GPL Version 2 licenses.
+The current `wear` package backend supports Debian and derivatives through APT. Check the recipe's `distributions` and package names for the target system.
 
+## Branding
+
+Select a bundle in a costume's `index.yaml`:
+
+```yaml
+name: my-desktop
+branding: quirinux
+```
+
+Tailor copies the contents of `branding/quirinux/` directly into `/etc/penguins-eggs.d/branding/`, replacing the previous selection. A costume without `branding` removes the active bundle; directly wearing an accessory preserves it.
+
+For Calamares, omit `branding.desc` when the generated distro identity is suitable. If you supply that file, it must be complete and use `componentName: eggs`. Empty files and comment-only stubs overwrite the generated descriptor and break the configuration. The [branding guide](DOCS/branding.md) explains the full layout and precedence.
+
+## Working on an atelier
+
+Tailor normally reads the real user's `~/.wardrobe/v2`, or `~/.wardrobe` for a collection without a `v2` wrapper. Local `./v2` is only a fallback when that installed wardrobe is absent. Running Tailor from a development checkout does not automatically select that checkout.
+
+Use a separate Git branch for recipe work. Review `tailor show`, the selected YAML, and the files under `sysroot/` before applying changes. The [user guide](DOCS/wardrobe-users-guide.md) covers previews and log locations.
