@@ -1,4 +1,4 @@
-/* .wardrobe/v2/branding/quirinux/calamares/branding/ */
+/* .wardrobe/vendors/quirinux/theme/calamares/branding/ */
 import QtQuick 2.0;
 import calamares.slideshow 1.0;
 
@@ -41,7 +41,7 @@ text: qsTr("<h1>Quirinux GNU/Linux Versión 2.2</h1>" +
 
 "<h3>https://www.quirinux.org/</h3><br/>" +
 
-"<b>Versión:</b> 2.2 Rev. 2 - 02-07-2026 <br/><br/>" +
+"<b>Versión:</b> 2.2 Rev. 2 - 04-09-2026 <br/><br/>" +
 
 "<b>Autor:</b> Charlie Martínez.<br/><br/>" +
 
@@ -70,3 +70,4 @@ text: qsTr("<h1>Quirinux GNU/Linux Versión 2.2</h1>" +
         console.log("QML Component (default slideshow) deactivated");
     }
 }
+

@@ -1,7 +1,8 @@
 name: colibri
 description: "desktop xfce4 plus all that I need to develop oa, firmwares"
 release: 2.0.1
-distributions:
+branding: abuntu
+distributionsabuntu
   - trixie
   - excalibur
   - resolute
@@ -44,6 +45,7 @@ sequence:
     - plymouth-themes
     - libglib2.0-bin
     - gnome-disk-utility
+    - pkexec
 
     # a bit of charm...
     - fonts-inter 
