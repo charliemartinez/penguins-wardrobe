@@ -1,12 +1,4 @@
 packages:
-  - gimp-quirinux
-  - mypaint-quirinux
-  - krita-quirinux
-  - inkscape
-  - azpainter
-  - darktable
-  - displaycal
-  - entangle
   - argyll
   - color-picker
   - darktable
@@ -14,12 +6,11 @@ packages:
   - enblend
   - enfuse
   - entangle
+  - gimp
   - gnome-color-manager
   - gphoto2
   - graphicsmagick
   - hugin
   - imagemagick
   - inkscape
-  - rawtherapee
-  - pikopixel.app
   - rawtherapee
