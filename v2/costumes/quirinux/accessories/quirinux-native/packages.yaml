@@ -23,7 +23,6 @@ packages:
   - quirinux-gparted-pkexec
   - quirinux-keyring
   - quirinux-nvidia-config
-  - quirinux-opencl-support
   - quirinux-parches
   - quirinux-recomendados
   - quirinux-temas

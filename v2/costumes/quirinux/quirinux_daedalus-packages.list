@@ -2317,7 +2317,6 @@
     - quirinux-keyring
     - quirinux-notify
     - quirinux-nvidia-config
-    - quirinux-opencl-support
     - quirinux-parches
     - quirinux-recomendados
     - quirinux-splash-animacion
