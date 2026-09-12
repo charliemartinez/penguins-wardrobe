@@ -98,6 +98,8 @@ finalize:
   - echo "debconf debconf/frontend select Dialog" | /usr/bin/debconf-set-selections
   - echo "debconf debconf/priority select high" | /usr/bin/debconf-set-selections
   - /usr/local/bin/quirinux-apply-skel || true
+  - cp /etc/penguins-eggs.d/branding/quirinux/artwork/install-system.png /usr/share/pixmaps/ 2>/dev/null || true
+  - cp /etc/penguins-eggs.d/branding/quirinux/applications/install-system.desktop /usr/share/applications/ 2>/dev/null || true
   - /usr/local/bin/quirinux-firmware-notice || true
   - /usr/local/bin/quirinux-kernel-notice || true
   - update-alternatives --remove pager /bin/cat || true

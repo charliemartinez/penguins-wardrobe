@@ -22,8 +22,8 @@ strings:
 
 images:
     productBanner:       "welcome.png"
-    productIcon:         "quirinux-logo.png"
-    productLogo:         "quirinux-logo.png"
+    productIcon:         "logo.png"
+    productLogo:         "logo.png"
     productWallpaper:    "slide1.png"
 
 slideshow:               "show.qml"
