@@ -1,0 +1,36 @@
+---
+componentName: quirinux
+
+welcomeExpandingLogo: true
+windowExpanding: normal
+windowSize: 1280px,665px
+windowPlacement: center
+navigation: widget
+
+strings:
+    productName:         Quirinux
+    shortProductName:    Quirinux
+    version:             "1.0"
+    shortVersion:        "1.0"
+    versionedName:       Quirinux
+    shortVersionedName:  Quirinux
+    bootloaderEntryName: Quirinux
+    productUrl:          https://quirinux.com
+    supportUrl:          https://quirinux.com/soporte
+    releaseNotesUrl:     https://quirinux.com/notas
+    donateUrl:           https://quirinux.com/donar
+
+images:
+    productBanner:       "welcome.png"
+    productIcon:         "quirinux-logo.png"
+    productLogo:         "quirinux-logo.png"
+    productWallpaper:    "slide1.png"
+
+slideshow:               "show.qml"
+slideshowAPI: 2
+
+style:
+    SidebarBackground:   "#2d2d2d"
+    SidebarText:         "#FFFFFF"
+    SidebarTextSelect:   "#0068C8"
+    
