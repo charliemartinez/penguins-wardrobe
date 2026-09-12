@@ -88,6 +88,7 @@ finalize:
   
   # 4. Configuración de locales y display manager
   - locale-gen es_ES.UTF-8 pt_BR.UTF-8 pt_PT.UTF-8 hu_HU.UTF-8 gl_ES.UTF-8 de_DE.UTF-8 ru_RU.UTF-8 fr_FR.UTF-8 it_IT.UTF-8 || true
+  - update-locale LANG=es_ES.UTF-8 LC_ALL=es_ES.UTF-8 || true
   - echo "/usr/sbin/lightdm" > /etc/X11/default-display-manager
   - (command -v systemctl >/dev/null 2>&1 && systemctl disable slim.service 2>/dev/null && systemctl mask slim.service 2>/dev/null) || (insserv -r slim 2>/dev/null || update-rc.d slim disable 2>/dev/null) || true
   - for dm in slim gdm3 gdm sddm; do if command -v systemctl >/dev/null 2>&1; then systemctl disable "$dm.service" 2>/dev/null || true; systemctl mask "$dm.service" 2>/dev/null || true; else [ -f "/etc/init.d/$dm" ] && update-rc.d -f "$dm" remove 2>/dev/null || true; fi; done
