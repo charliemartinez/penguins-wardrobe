@@ -17,8 +17,6 @@ sequence:
       - non-free-firmware
     sources_list_d:
       - export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-      - echo "tzdata tzdata/Areas select Europe" | debconf-set-selections || true
-      - echo "tzdata tzdata/Zones/Europe select Madrid" | debconf-set-selections || true
       - apt-get install -y curl gnupg unzip
       - update-alternatives --install /usr/bin/pager pager /bin/cat 200 || true
       - rm -f /usr/share/keyrings/quirinux.gpg
