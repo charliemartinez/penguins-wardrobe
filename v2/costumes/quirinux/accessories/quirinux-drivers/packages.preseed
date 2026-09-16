@@ -1,1 +1,4 @@
 firmware-ipw2x00 firmware-ipw2x00/license/accepted boolean true
+mok mok/generate boolean false
+mok mok/import boolean false
+mok mok/reboot boolean false
