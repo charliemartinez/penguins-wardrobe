@@ -1,3 +1,6 @@
+debconf debconf/priority select critical
+tzdata tzdata/Areas select Europe
+tzdata tzdata/Zones/Europe select Madrid
 firmware-ipw2x00 firmware-ipw2x00/license/accepted boolean true
 mok mok/generate boolean false
 mok mok/import boolean false
