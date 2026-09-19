@@ -78,6 +78,8 @@ finalize:
   # 1. Configuración y reparaciones
   - DEBIAN_FRONTEND=readline PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" dpkg --configure -a || true
   - apt-get install -y --allow-downgrades --fix-broken || true
+  - cp /etc/penguins-eggs.d/branding/quirinux/artwork/install-system.png /usr/share/pixmaps/penguins-eggs.png 2>/dev/null || true
+  - mkdir -p /usr/share/icons/hicolor/48x48/apps && cp /etc/penguins-eggs.d/branding/quirinux/artwork/install-system.png /usr/share/icons/hicolor/48x48/apps/penguins-eggs.png 2>/dev/null || true
   
   # 2. Instalaciones específicas
   - apt-get install -y quirinux-firmware quirinux-youdown quirinux-youtubedown || true
