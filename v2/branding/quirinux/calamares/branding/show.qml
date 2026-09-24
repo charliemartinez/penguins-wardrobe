@@ -25,8 +25,11 @@ Presentation
             source: "slide1.png"
             anchors.centerIn: parent
             anchors.top: background.bottom
-            width: 810
-            height: 485
+            // Tamaño máximo razonable, preservando aspect ratio
+            maximumWidth: 1200
+            maximumHeight: 800
+            width: Math.min(slide1.sourceSize.width, maximumWidth)
+            height: Math.min(slide1.sourceSize.height, maximumHeight)
             fillMode: Image.PreserveAspectFit
         }
          Text {
@@ -70,4 +73,3 @@ text: qsTr("<h1>Quirinux GNU/Linux Versión 2.2</h1>" +
         console.log("QML Component (default slideshow) deactivated");
     }
 }
-
