@@ -20,18 +20,28 @@ Presentation
     }
 
     Slide {
-        Image {
-            id: slide1
-            source: "slide1.png"
+        // Fondo: la imagen cubre todo el área manteniendo su proporción
+        // (recorta lo que sobre). El ancla vertical al 80% conserva la caja
+        // del producto, que está en la parte baja de slide1.png (1200x800).
+        Item {
             anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
+            clip: true
+
+            Image {
+                id: slide1
+                source: "slide1.png"
+                property real cover: Math.max(parent.width / 1200, parent.height / 800)
+                width: 1200 * cover
+                height: 800 * cover
+                x: (parent.width - width) / 2
+                y: (parent.height - height) * 0.8
+            }
         }
-         Text {
+        Text {
             font.family: "Ubuntu"
             font.pixelSize: 13
             color: "#6d526b"
-            anchors.right: parent.right
-            anchors.rightMargin: 20
+            anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
 
 text: qsTr("<h1>Quirinux GNU/Linux Versión 2.2</h1>" + 
@@ -55,8 +65,10 @@ text: qsTr("<h1>Quirinux GNU/Linux Versión 2.2</h1>" +
 
 "<b>Dedicado a Emilio Gorini (qepd).</b>")
             wrapMode: Text.WordWrap
-            width: parent.width * 0.55
-            horizontalAlignment: Text.Center
+            width: parent.width * 0.9
+            // Si el bloque no cabe en vertical (ventana pequeña), se reduce en bloque
+            scale: Math.min(1, (parent.height - 16) / height)
+            horizontalAlignment: Text.AlignHCenter
         }
     }
 
