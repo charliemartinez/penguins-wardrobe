@@ -20,11 +20,19 @@ Presentation
     }
 
     Slide {
-        // Fondo: la imagen cubre todo el área manteniendo su proporción
-        // (recorta lo que sobre). El ancla vertical al 80% conserva la caja
-        // del producto, que está en la parte baja de slide1.png (1200x800).
+        // Fondo: la imagen cubre TODA la presentación manteniendo su
+        // proporción (recorta lo que sobre). El ancla vertical al 80% conserva
+        // la caja del producto, que está en la parte baja de slide1.png (1200x800).
+        //
+        // OJO: el Slide de Calamares no ocupa toda la presentación, sino el
+        // centro (x 5%, y 20%, ancho 90%, alto 70%). Por eso este contenedor
+        // se desplaza en negativo y toma el tamaño de la presentación
+        // (masterWidth/masterHeight) y no el del Slide.
         Item {
-            anchors.fill: parent
+            x: -parent.x
+            y: -parent.y
+            width: parent.masterWidth
+            height: parent.masterHeight
             clip: true
 
             Image {
