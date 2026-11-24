@@ -1,5 +1,4 @@
 packages:
   - flatpak
   - flatpakconfig
-  - qapt-deb-installer
   - software-properties-common
